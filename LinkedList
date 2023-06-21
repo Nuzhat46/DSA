@@ -1,4 +1,4 @@
-//LinkedList Implementaion, Insert(First,mid,last)
+/*package whatever //do not write package name here */
 
 import java.io.*;
 
@@ -94,6 +94,36 @@ class LL{
         System.out.println("END");
     }
     
+    public Node delFirst(){
+        head = head.next;
+        return head;
+    }
+    
+    public Node delLast(){
+        
+        Node prev = head;
+        
+        while(prev.next.next != null){
+            prev = prev.next;
+            
+        }
+        prev.next = null;
+        tail = prev;
+        //tail.next = null;
+        return tail;
+    }
+    
+    public Node del(int index){
+        Node temp = head;
+        int i=1;
+        while(i<index){
+            temp = temp.next;
+            i++;
+        }
+        temp.next = temp.next.next;
+        
+        return head;
+    }
     
 }
 
@@ -108,6 +138,16 @@ class GFG {
 		list.insertFirst(63);
 		list.insertLast(100);
 		list.insert(500,4);
+		list.display();
+		
+		list.delFirst();
+		list.display();
+		System.out.println();
+		list.delLast();
+		list.display();
+		
+		System.out.println();
+		list.del(1);
 		list.display();
 		
 	}
