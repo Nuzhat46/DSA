@@ -1,0 +1,114 @@
+//LinkedList Implementaion, Insert(First,mid,last)
+
+import java.io.*;
+
+class LL{
+    
+    private Node head;
+    private Node tail;
+    private int size;
+    
+    public LL(){
+        
+        this.size = 0;
+    }
+    
+    
+    
+    class Node{
+        int val;
+        Node next;
+        
+        public Node(int val){
+            this.val = val;
+        }
+    
+        public Node(int val, Node next){
+            this.val = val;
+            this.next = next;
+        }
+        
+    }
+    
+    public Node insertFirst(int val){
+        
+        Node node =new Node(val);
+        node.next = head;
+        head = node;
+        
+        if(tail == null){
+            tail = head;
+        }
+        
+        size += 1;
+        return head;
+    }
+    
+    public Node insertLast(int val){
+        
+        if(tail == null){
+            insertFirst(val);
+            return head;
+        }
+        
+        Node node = new Node(val);
+        tail.next = node;
+        tail = node;
+        size++;
+        return tail;
+    }
+    
+    public Node insert(int val, int index){
+        
+        if(index == 0){
+            insertFirst(val);
+            return head;
+        }
+        else if(index == size){
+            insertLast(val);
+            return tail;
+        }
+        
+        
+        Node temp = head;
+        int i=1;
+        while(i<index){
+            
+            temp = temp.next;
+            i++;
+        }
+        Node node = new Node(val,temp.next); //using contructor 2 of LL
+        node.next = temp.next;
+        temp.next = node;
+        
+        return head;
+    }
+    
+    
+    public void display(){
+        Node temp = head;
+        while(temp !=null){
+            System.out.print(temp.val + " --> ");
+            temp = temp.next;
+        }
+        System.out.println("END");
+    }
+    
+    
+}
+
+class GFG {
+	public static void main (String[] args) {
+		System.out.println("GfG!");
+		
+		LL list = new LL();
+		list.insertFirst(9);
+		list.insertFirst(34);
+		list.insertFirst(12);
+		list.insertFirst(63);
+		list.insertLast(100);
+		list.insert(500,4);
+		list.display();
+		
+	}
+}
